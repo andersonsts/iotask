@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { MdWeb, MdPhoneIphone } from 'react-icons/md';
 
 import api from '../../services/api';
 
 import Header from '../../components/Header';
-
-import { Container, CardUser, InfoUser, Loading } from './styles';
+import Loading from '../../components/Loading';
+import Table from '../../components/Table';
+import CardUser from '../../components/CardUser';
 
 export default function User({ match }) {
   const [user, setUser] = useState({});
+  const [userTasks, setUserTasks] = useState({});
   const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     async function loadUser() {
       setLoading(true);
 
@@ -25,6 +27,12 @@ export default function User({ match }) {
       setUser(
         responseUsers.data.find(
           (userData) => userData.id === Number(match.params.userId)
+        )
+      );
+
+      setUserTasks(
+        responseTasks.data.filter(
+          (task) => task.userId === Number(match.params.userId)
         )
       );
 
@@ -48,37 +56,16 @@ export default function User({ match }) {
   }, [match.params.userId]);
 
   return (
-    <Container>
+    <>
       <Header />
       {loading ? (
-        <Loading
-          type="Oval"
-          color="#B0C4DE"
-          height={40}
-          width={40}
-          timeout={3000}
-        />
+        <Loading />
       ) : (
-        <CardUser ready={ready}>
-          <img
-            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-            alt={user.name}
-          />
-          <InfoUser>
-            <strong>{user.name}</strong>
-            <span>{user.email}</span>
-            <p>{counter} Tarefas Pendentes</p>
-            <small>
-              <MdWeb />
-              {user.website}
-            </small>
-            <small>
-              <MdPhoneIphone />
-              {user.phone}
-            </small>
-          </InfoUser>
-        </CardUser>
+        <>
+          <CardUser ready={ready} user={user} counter={counter} />
+          <Table ready={ready} tasks={userTasks} taskOnly />
+        </>
       )}
-    </Container>
+    </>
   );
 }

@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import Loader from 'react-loader-spinner';
-
-export const Container = styled.div``;
 
 export const Table = styled.table`
   transition: opacity 0.2s ease-in;
@@ -84,11 +81,4 @@ export const Status = styled.button`
   color: ${(props) => (props.completed ? '#87b634' : '#d74c4c')};
   font-size: 14px;
   font-weight: 400;
-`;
-
-export const Loading = styled(Loader)`
-  position: absolute;
-  top: 40%;
-  left: calc(50% - 50px);
-  height: 100%;
 `;

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
 import Header from '../../components/Header';
-
-import { Container, Status, Table, Loading } from './styles';
+import Table from '../../components/Table';
+import Loading from '../../components/Loading';
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -13,6 +12,8 @@ export default function Tasks() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     async function loadTasks() {
       setLoading(true);
 
@@ -41,46 +42,10 @@ export default function Tasks() {
   }, []);
 
   return (
-    <Container>
+    <>
       <Header />
-      {loading ? (
-        <Loading
-          type="Oval"
-          color="#B0C4DE"
-          height={40}
-          width={40}
-          timeout={3000}
-        />
-      ) : (
-        <Table ready={ready}>
-          <thead>
-            <tr>
-              <th>TAREFA</th>
-              <th>RESPONSÁVEL</th>
-              <th>
-                <div>STATUS</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tasks.map((task) => (
-              <tr key={task.id}>
-                <td>{task.title}</td>
-                <td>
-                  <Link to={`/user/${task.userId}`}>{task.user.name}</Link>
-                </td>
-                <td>
-                  <div>
-                    <Status type="button" completed={task.completed}>
-                      {task.completed ? 'Feito' : 'Pendente'}
-                    </Status>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
-    </Container>
+
+      {loading ? <Loading /> : <Table ready={ready} tasks={tasks} />}
+    </>
   );
 }
