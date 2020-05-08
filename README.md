@@ -4,15 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone o repositório
 
-### `git clone https://github.com/andersonsts/iotask`
+```git clone https://github.com/andersonsts/iotask```
 
 Entre no repositorio e instale as dependências
 
-### `yarn install`
+```yarn install```
 
 Execute o projeto em [http://localhost:3000](http://localhost:3000)
 
-### `yarn start`
+```yarn start```
 
 ---
 
