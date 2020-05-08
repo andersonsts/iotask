@@ -1,8 +1,11 @@
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 export const Container = styled.div``;
 
 export const CardUser = styled.div`
+  transition: opacity 0.2s ease-in;
+  opacity: ${(props) => (props.ready ? '1' : '0')};
   box-shadow: 0px 0px 15px #eee;
   width: 1130px;
   background: #fff;
@@ -49,5 +52,18 @@ export const InfoUser = styled.div`
     color: #777;
     font-size: 14px;
     margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+
+    > svg {
+      margin-right: 4px;
+    }
   }
+`;
+
+export const Loading = styled(Loader)`
+  position: absolute;
+  top: 40%;
+  left: calc(50% - 50px);
+  height: 100%;
 `;
