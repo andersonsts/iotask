@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Header, Logo, Navigation, NavItem } from './styles';
 
 export default function HeaderComponet() {
-  const [select, setSelect] = useState(true);
   const location = useLocation();
+  const [select, setSelect] = useState(location.pathname === '/');
 
   useEffect(() => {
     if (location.pathname === '/') {
