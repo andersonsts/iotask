@@ -48,7 +48,8 @@ export const NavItem = styled.div`
     border-radius: 8px;
     font-size: 18px;
     color: ${(props) => (props.active ? '#143ea3' : '#434343')};
-    font-weight: ${(props) => (props.active ? 'bold' : '400')};
+    font-weight: ${(props) => (props.active ? `bold` : '400')};
     text-decoration: none;
+    transition: all 140ms ease-in-out;
   }
 `;

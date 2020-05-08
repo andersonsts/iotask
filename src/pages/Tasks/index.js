@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 import Header from '../../components/Header';
 
-import { Container } from './styles';
+import { Container, Status } from './styles';
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -50,9 +50,9 @@ export default function Tasks() {
               </td>
               <td>
                 <div>
-                  <button type="button">
+                  <Status type="button" completed={task.completed}>
                     {task.completed ? 'Feito' : 'Pendente'}
-                  </button>
+                  </Status>
                 </div>
               </td>
             </tr>

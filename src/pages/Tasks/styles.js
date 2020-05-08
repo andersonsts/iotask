@@ -5,7 +5,7 @@ export const Container = styled.div`
   table {
     box-shadow: 0px 0px 15px #eee;
     margin: 33px auto;
-    padding: 20px 22px 35px 22px;
+    padding: 20px 22px 40px 22px;
     background: #fff;
     width: 1130px;
     border-radius: 4px;
@@ -19,6 +19,7 @@ export const Container = styled.div`
       th {
         &:first-child {
           padding: 0px 25px;
+          width: 55%;
         }
 
         width: 100px;
@@ -60,21 +61,24 @@ export const Container = styled.div`
             display: flex;
             align-items: center;
             justify-content: center;
-
-            > button {
-              border: none;
-              border-radius: 4px;
-              width: 84px;
-              line-height: 17px;
-              height: 34px;
-              background: ${lighten(0.5, '#87B634')};
-              color: #87b634;
-              font-size: 14px;
-              font-weight: 400;
-            }
           }
         }
       }
     }
   }
+`;
+
+export const Status = styled.button`
+  border: none;
+  border-radius: 4px;
+  width: 84px;
+  line-height: 17px;
+  height: 34px;
+  background: ${(props) =>
+    props.completed
+      ? `${lighten(0.5, '#87B634')}`
+      : `${lighten(0.4, '#d74c4c')}`};
+  color: ${(props) => (props.completed ? '#87b634' : '#d74c4c')};
+  font-size: 14px;
+  font-weight: 400;
 `;

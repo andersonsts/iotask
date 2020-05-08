@@ -1,9 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Header, Logo, Navigation, NavItem } from './styles';
 
 export default function HeaderComponet() {
+  const [select, setSelect] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setSelect(true);
+      return;
+    }
+
+    setSelect(false);
+  }, [location]);
+
   return (
     <Header>
       <Logo>
@@ -12,11 +24,11 @@ export default function HeaderComponet() {
       </Logo>
 
       <Navigation>
-        <NavItem active={false}>
+        <NavItem active={select}>
           <Link to="/">Tarefas</Link>
         </NavItem>
-        <NavItem active>
-          <Link to="/user/1">Usuários</Link>
+        <NavItem active={!select}>
+          <Link to="/users">Usuários</Link>
         </NavItem>
       </Navigation>
     </Header>
